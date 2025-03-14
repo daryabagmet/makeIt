@@ -54,6 +54,25 @@ const DataProvider: React.FC<DataProviderPropsType> = ({ children }) => {
     )
   }, [])
 
+  const markDone = useCallback((id: string) => {
+    setGoals((prevGoals) => {
+      const goalAlreadyMarkedDone = prevGoals.some(
+        (goal) => goal.id === id && goal.done,
+      )
+      if (goalAlreadyMarkedDone) return prevGoals
+
+      return prevGoals.map((goal) =>
+        goal.id === id ? { ...goal, done: true } : goal,
+      )
+    })
+
+    setCurrentGoal((current) =>
+      current?.id === id && !current.done
+        ? { ...current, done: true }
+        : current,
+    )
+  }, [])
+
   const doActivity = useCallback((id: string) => {
     setGoals((prevGoals) =>
       prevGoals.map((goal) =>
@@ -106,6 +125,7 @@ const DataProvider: React.FC<DataProviderPropsType> = ({ children }) => {
       setCurrentGoalAction,
       doActivity,
       undoActivity,
+      markDone,
     },
   }
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>

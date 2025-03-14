@@ -13,6 +13,7 @@ interface DataActionsType {
   setCurrentGoalAction: (goal: GoalType | null) => void
   doActivity: (id: string) => void
   undoActivity: (id: string) => void
+  markDone: (id: string) => void
 }
 
 interface DataContextType {
@@ -32,5 +33,6 @@ export const DataContext = createContext<DataContextType>({
     setCurrentGoalAction: () => {},
     doActivity: () => {},
     undoActivity: () => {},
+    markDone: () => {},
   },
 })
