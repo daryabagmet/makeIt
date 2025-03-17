@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react'
 import { useDataStore } from '../data/useDataStore'
 import { GoalType } from './Goal'
 
-interface GoalTitlePropsType {
+export interface GoalTitlePropsType {
   isEditing: boolean
   newTitle: string
   onTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -44,6 +44,7 @@ const GoalTitle: React.FC<GoalTitlePropsType> = ({
       value={newTitle}
       onChange={onTitleChange}
       className="border border-gray-300 rounded mb-2"
+      data-testid="edit-title-input"
     />
   ) : (
     <div className="flex gap-2 justify-between align-middle">
@@ -52,6 +53,7 @@ const GoalTitle: React.FC<GoalTitlePropsType> = ({
         <button
           className="flex gap-0.5 text-violet-500"
           onClick={handleDoProgress}
+          data-testid="do-activity-button"
         >
           <CheckIcon className="w-6 h-6 text-violet-600" />
           Do activity
@@ -59,6 +61,7 @@ const GoalTitle: React.FC<GoalTitlePropsType> = ({
         <button
           className="flex gap-0.5 text-violet-500"
           onClick={handleUndoProgress}
+          data-testid="undo-activity-button"
         >
           <UndoIcon className="w-6 h-6 text-violet-600" />
           Undo
