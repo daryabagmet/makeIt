@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GoalIcon, MedalIcon } from 'lucide-react'
+import Fireworks from 'react-canvas-confetti/dist/presets/fireworks'
 import GoalProgress from './GoalProgress'
 import GoalActions from './GoalActions'
 import GoalTitle from './GoalTitle'
@@ -20,10 +21,25 @@ const Goal: React.FC<GoalType> = ({ id, title, progress, done }) => {
     )
   const [isEditing, setIsEditing] = useState(false)
   const [newTitle, setNewTitle] = useState(title)
+  const [showFireworks, setShowFireworks] = useState<boolean>(false)
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value)
   }
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null
+
+    if (progress === 100) {
+      timeoutId = setTimeout(() => setShowFireworks(true), 0)
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [progress])
 
   return (
     <div
@@ -47,6 +63,14 @@ const Goal: React.FC<GoalType> = ({ id, title, progress, done }) => {
         setIsEditing={setIsEditing}
         newTitle={newTitle}
       />
+      {showFireworks && (
+        <Fireworks
+          autorun={{
+            speed: 0.75,
+            duration: 5000,
+          }}
+        />
+      )}
     </div>
   )
 }
