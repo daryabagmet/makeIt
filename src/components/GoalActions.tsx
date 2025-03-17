@@ -1,5 +1,5 @@
 import { PencilIcon, SaveIcon, SparklesIcon, Trash2Icon } from 'lucide-react'
-import { useData } from '../data/hooks/useData'
+import { useDataStore } from '../data/useDataStore'
 import { GoalType } from './Goal'
 
 interface GoalActionsPropsType {
@@ -16,10 +16,12 @@ const GoalActions: React.FC<GoalActionsPropsType> = ({
   newTitle,
 }) => {
   const {
-    state: { goals, currentGoal },
-    actions,
-  } = useData()
-  const { editGoal, removeGoal, setCurrentGoalAction } = actions
+    goals,
+    currentGoal,
+    editGoal,
+    removeGoal,
+    setCurrentGoal,
+  } = useDataStore()
 
   const iconClassStr = `w-6 h-6 text-violet-500 ${
     currentGoal?.id === id ? 'fill-current' : ''
@@ -40,10 +42,9 @@ const GoalActions: React.FC<GoalActionsPropsType> = ({
 
   const toggleCurrentGoal = (id: string) => {
     const newGoal = goals.find((goal) => goal.id === id) || null
+    const newGoalValue = currentGoal?.id === id ? null : newGoal
 
-    setCurrentGoalAction((prev: GoalType | null) =>
-      prev?.id === id ? null : newGoal,
-    )
+    setCurrentGoal(newGoalValue)
   }
 
   return (

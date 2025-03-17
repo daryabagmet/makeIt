@@ -1,6 +1,6 @@
 import { CheckIcon, UndoIcon } from 'lucide-react'
 import { useEffect, useMemo } from 'react'
-import { useData } from '../data/hooks/useData'
+import { useDataStore } from '../data/useDataStore'
 import { GoalType } from './Goal'
 
 interface GoalTitlePropsType {
@@ -16,9 +16,7 @@ const GoalTitle: React.FC<GoalTitlePropsType> = ({
   onTitleChange,
   goal,
 }) => {
-  const {
-    actions: { doActivity, undoActivity, markDone },
-  } = useData()
+  const { doActivity, undoActivity, markDone } = useDataStore()
   const { progress, title, id } = goal
   const cardTitle = useMemo(
     () =>
