@@ -6,7 +6,7 @@ const GoalProgress: React.FC<GoalProgressPropsType> = ({ progress }) => {
   return (
     <>
       <div className="text-gray-700">Progress: {progress} / 100</div>
-      <div className="flex gap-0.5 w-full my-2">
+      <div className="flex gap-0.5 w-full my-2" data-testid="progress-row">
         {Array.from({ length: 100 }).map((_, index) => (
           <div
             key={index}

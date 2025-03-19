@@ -29,10 +29,12 @@ const Form: React.FC<FormPropsType> = ({ addGoal }) => {
           onChange={handleFieldChange}
           className="p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter your goal"
+          data-testid="add-goal-input"
         />
         <button
           onClick={handleAddGoal}
           className="w-40 py-2 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-400"
+          data-testid="add-goal-btn"
         >
           Make it!
         </button>
