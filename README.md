@@ -30,4 +30,6 @@ This is a 100 days challenge app built with React, TypeScript and TailwinCSS.
 
 `npm run test` or `yarn test`
 
-### 5. Open [http://localhost:5173/]( http://localhost:5173/) to view in the browser.
+### 5. Open http://localhost:5173 to view in the browser.
+
+### 6. Demo link on [Vercel](https://make-it-umber.vercel.app)
